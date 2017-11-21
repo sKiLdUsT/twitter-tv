@@ -1,0 +1,257 @@
+@charset "UTF-8";
+
+$twitter-color: #1DA1F3;
+$twitter-color-darken: #0a7ec5;
+$twitter-color-lighten: #57b9f6;
+
+body {
+  margin: 0;
+  width: 100vw;
+  height: 100vh;
+  color: white;
+  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+}
+
+.loader {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  z-index: 10000;
+  background-color: $twitter-color;
+  transition: margin-top 1s cubic-bezier(.55,.09,.68,.53);
+  & #lImage {
+    position: absolute;
+    width: 8rem;
+    height: 8rem;
+    left: calc(50% - 1rem);
+    top: 50%;
+    transform: translate(-50%, -50%);
+    & p {
+      position: absolute;
+      font-weight: bold;
+      left: calc(100% - 1.5rem);
+      font-size: 20px;
+    }
+    & img {
+      border-radius: 2rem;
+    }
+  }
+  & #lCircle {
+    position: absolute;
+    width: 12rem;
+    height: 12rem;
+    left: calc(50% - 6rem);
+    top: calc(50% - 6rem);
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    border-top: solid 5px $twitter-color-darken;
+    animation: rotate 1s linear infinite;
+  }
+  &.lHide {
+    margin-top: -100%;
+  }
+  & #lProgress {
+    position: absolute;
+    width: 50%;
+    height: 5px;
+    background-color: $twitter-color-darken;
+    top: 75%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 5px;
+    & .slider {
+      position: relative;
+      width: 0;
+      height: 5px;
+      max-width: 100%;
+      background-color: $twitter-color-lighten;
+      border-radius: 5px;
+      transition: all .5s ease;
+    }
+  }
+}
+
+div.fullpage {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  background-color: $twitter-color-darken;
+  & div.watermark {
+    position: fixed;
+    z-index: 100;
+    top:0;
+    left:0;
+    height: 5rem;
+    width: 6.5rem;
+    margin-left: -20px;
+    margin-top: -20px;
+    border-radius: 10px;
+    background-color: $twitter-color;
+    box-shadow: 0 4px 5px 0 rgba(0,0,0,.14),0 1px 10px 0 rgba(0,0,0,.12),0 2px 4px -1px rgba(0,0,0,.3);
+    & p {
+      position: absolute;
+      font-weight: bold;
+      left: calc(100% - 2rem);
+      font-size: 20px;
+    }
+    & img {
+      height: 4rem;
+      width: 4rem;
+      margin-top: 1rem;
+      margin-left: 1rem;
+    }
+  }
+  & div.center {
+    text-align: center;
+    align-content: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 45%;
+    max-height: 70%;
+    transform: translate(-50%, -50%);
+    padding: 2rem;
+    background-color: $twitter-color;
+    box-shadow: 0 4px 5px 0 rgba(0,0,0,.14),0 1px 10px 0 rgba(0,0,0,.12),0 2px 4px -1px rgba(0,0,0,.3);
+  }
+}
+
+.tweet {
+  padding: 2rem;
+  background-color: #fff;
+  border-radius: 6px;
+  color: #000;
+  box-shadow: 0 4px 5px 0 rgba(0,0,0,.14),0 1px 10px 0 rgba(0,0,0,.12),0 2px 4px -1px rgba(0,0,0,.3);
+  & .uInfo {
+    margin-bottom: 30px;
+    max-height: 48px;
+    & img.user {
+      float: left;
+      margin-right: 1rem;
+      border-radius: 5px;
+    }
+    & strong {
+      font-size: 18px;
+      font-weight: 700;
+      line-height: 24px;
+      font-family: Arial,sans-serif;
+    }
+    & p.screenName {
+      color: rgb(101, 119, 134);
+      font-size: 14px;
+      line-height: 19.25px;
+      margin-top: 4px;
+    }
+  }
+  & p.tText {
+    font-size: 27px;
+    font-weight: 300;
+    letter-spacing: 0.266667px;
+    line-height: 32px;
+    color: rgb(20, 23, 26);
+    font-family: Arial,sans-serif;
+    overflow-wrap: break-word;
+    white-space: pre-wrap;
+    & a {
+      color: rgb(7, 32, 68);
+      text-decoration: none;
+    }
+  }
+  & div.linkPreview {
+    border-radius: 6px;
+    border: rgb(225, 232, 237) 1px solid;
+    & img {
+      width: 100%;
+      max-height: 25vh;
+      border-top-left-radius: 6px;
+      border-top-right-radius: 6px;
+    }
+    & div.content {
+      padding: 10.5px;
+      & h3 {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        font-size: 14px;
+        line-height: 18.2px;
+        margin-bottom: .5rem;
+      }
+      & p {
+        font-size: 14px;
+        line-height: 18.2px;
+        margin-top: 0;
+      }
+    }
+  }
+  & p.date {
+    margin-bottom: 30px;
+    color: rgb(101, 119, 134);
+  }
+}
+
+.background {
+  z-index: -1;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: -50%;
+  left: -50%;
+  transform: translate(50%, 50%);
+  & .dim {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    color: #000;
+    opacity: 0.4;
+  }
+}
+
+.bigTweet {
+  transition: opacity .3s;
+  position: fixed;
+  width: 45%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.inv {
+  transition: opacity .3s;
+  opacity: 0;
+}
+
+img.emoji {
+  height: 1.25em;
+  width: 1.25em;
+  padding: 0 .05em 0 .1em;
+  vertical-align: -0.2em;
+}
+
+button {
+  color: #fff;
+  letter-spacing: .5px;
+  border: none;
+  border-radius: 2px;
+  height: 36px;
+  line-height: 36px;
+  outline: 0;
+  padding: 0 2rem;
+  text-transform: uppercase;
+  font-weight: bold;
+  text-align: center;
+  box-shadow: 0 2px 5px 0 rgba(0,0,0,.16),0 2px 10px 0 rgba(0,0,0,.12);
+  background-color: $twitter-color-darken;
+  text-decoration: none;
+  margin: 0;
+  cursor: pointer;
+  transition: background-color .3s ease;
+  &:hover {
+    background-color: $twitter-color-lighten;
+  }
+}
+
+@keyframes rotate {
+  from {transform: rotate(0deg)}
+  to {transform: rotate(360deg)}
+}
