@@ -27,7 +27,8 @@ function getTrends($resolveIP, $query = false)
             'geocode' => "{$latlong[0]},{$latlong[1]},100km",
             'result_type' => 'popular, recent',
             'count' => 10,
-            'include_entities' => true
+	    'include_entities' => true,
+	    'tweet_mode' => 'extended'
             ])->statuses;
             $statuses[$trend->name] = $results;
         }

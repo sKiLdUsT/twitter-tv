@@ -3,10 +3,21 @@
 /* global twemoji, twttr, moment */
 
 onmessage = e => {
-  postMessage(self[e.data.action](e.data.data))
+  postMessage(functions[e.data.action](e.data.data))
 }
 
 let count
+
+let functions = {
+	digestTweets,
+	renderTweets,
+	renderSingle,
+	pullLinkPreview
+}
+
+const twemoji = require('./twemoji')
+const twttr = require('./twitter-text')
+const moment = require('./moment-with-locales')
 
 function digestTweets (rawTweets) {
   let sorted = []
@@ -25,7 +36,7 @@ function digestTweets (rawTweets) {
         'id': tweet.id_str,
         'created': moment(tweet.created_at, 'ddd MMM D HH:mm:ss Z gggg').format('H:mm - D MMM YYYY'),
         'user': '<img class="user" src="' + tweet.user.profile_image_url_https + '"><strong>' + twemoji.parse(tweet.user.name) + '</strong><p class="screenName">@' + tweet.user.screen_name + '</p>',
-        'text': twemoji.parse(twttr.txt.autoLink(tweet.text, {urlEntities: tweet.entities.urls, targetBlank: true})),
+        'text': twemoji.parse(twttr.autoLink(tweet.full_text, {urlEntities: tweet.entities.urls, targetBlank: true})),
         'src': tweet,
         'entities': tweet.entities
       })

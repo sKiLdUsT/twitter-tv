@@ -1,4 +1,3 @@
-var window = self;
 (function() {
   if (typeof twttr === "undefined" || twttr === null) {
     var twttr = {};

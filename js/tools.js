@@ -9,26 +9,33 @@ let uPro
 let bSeq = 0
 let tCache = {}
 
+module.exports = {
+	getTweets,
+	displayData,
+	displayBig,
+	updateLoader
+}
+
 function getTweets (callback) {
-  updateLoader(0)
-  let request = new XMLHttpRequest()
-  request.open('GET', '/api/pull', true)
-  request.onload = () => {
-    if (request.status >= 200 && request.status < 400) {
-      try {
-        callback(JSON.parse(request.responseText))
-      } catch (e) {
-        updateLoader(-1)
-        throw e
-      }
-    } else {
-      updateLoader(-1)
-    }
-  }
-  request.onerror = () => {
-    updateLoader(-1)
-  }
-  request.send()
+	updateLoader(0)
+	let request = new XMLHttpRequest()
+	request.open('GET', '/api/pull', true)
+	request.onload = () => {
+		if (request.status >= 200 && request.status < 400) {
+		try {
+			callback(JSON.parse(request.responseText))
+		} catch (e) {
+			updateLoader(-1)
+			throw e
+		}
+		} else {
+		updateLoader(-1)
+		}
+	}
+	request.onerror = () => {
+		updateLoader(-1)
+	}
+	request.send()
 }
 
 function displayData (data) {

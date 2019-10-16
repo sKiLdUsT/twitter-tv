@@ -2,16 +2,18 @@
 /* eslint-env browser */
 /* eslint-disable no-undef */
 
+const tools = require('./tools')
+
 switch (window.location.pathname) {
   case '/':
     document.addEventListener('DOMContentLoaded', () => {
-      getTweets(displayData)
+      tools.getTweets(tools.displayData)
       setInterval(() => {
-        getTweets(displayData)
+        tools.getTweets(tools.displayData)
       }, 300000)
     })
     document.addEventListener('AppReady', () => {
-      updateLoader(2)
+      tools.updateLoader(2)
       particlesJS.load('particles-js', 'assets/particles.json', () => {})
       document.getElementsByClassName('loader')[0].classList.add('lHide')
     })
